@@ -1,0 +1,5 @@
+package com.example.jobapp.job_application_api.dao;
+
+public interface JobApplicationDao {
+
+}

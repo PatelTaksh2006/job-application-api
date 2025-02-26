@@ -1,0 +1,28 @@
+package com.example.jobapp.job_application_api.dao;
+
+import org.springframework.stereotype.Repository;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+
+import com.example.jobapp.job_application_api.entity.Job;
+import java.util.*;
+@Repository
+public class JobDaoImp implements JobDao{
+	private EntityManager entityManager;
+	
+	@Override
+	public List<Job> getAllJob()
+	{
+		TypedQuery<Job> theQuery=entityManager.createQuery("FROM Job",Job.class);
+		return theQuery.getResultList();
+	}
+	
+	
+	@Override
+	public List<Job> getAllJobByCompany(int companyId)
+	{
+		TypedQuery<Job> theQuery=entityManager.createQuery("From Job WHERE company=?", Job.class);
+		return theQuery.getResultList();
+	}
+}
