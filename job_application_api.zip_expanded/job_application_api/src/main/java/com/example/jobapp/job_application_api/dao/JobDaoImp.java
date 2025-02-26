@@ -50,6 +50,24 @@ public class JobDaoImp implements JobDao{
 		// TODO Auto-generated method stub
 		entityManager.merge(theJob);
 	}
+
+
+	@Override
+	public List<Job> findJobByApplicant(int id) {
+		// TODO Auto-generated method stub
+		TypedQuery<Job> theQuery=entityManager.createQuery("SELECT j from Job j JOIN j.applicants a WHERE a.id=:applicant_id",Job.class);
+		theQuery.setParameter("applicant_id", id);
+		return theQuery.getResultList();
+	}
+
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Job theJob=entityManager.find(Job.class, id);
+		entityManager.remove(theJob);
+		
+	}
 	
 	
 }

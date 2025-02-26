@@ -1,7 +1,8 @@
-package com.example.jobapp.job_application_api.dao;
+package com.example.jobapp.job_application_api.service;
+import java.util.List;
 import com.example.jobapp.job_application_api.entity.Job;
-import java.util.*;
-public interface JobDao {
+
+public interface JobService {
 	List<Job> getAllJob();
 	List<Job> getAllJobByCompany(int CompanyId);
 	List<Job> getAllJobByName(String name);
