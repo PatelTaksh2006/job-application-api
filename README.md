@@ -40,7 +40,7 @@
 <br>
 
 <h2>Use Cases:</h2>
-All the user has its email(as username),password
+<br>All the user has its email(as username),password<br>
 1) Applicant
       <ul>
       <li>can create its account</li>
