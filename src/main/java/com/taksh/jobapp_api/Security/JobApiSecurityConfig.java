@@ -47,7 +47,7 @@ public class JobApiSecurityConfig {
 			.requestMatchers(HttpMethod.POST,"/api/aplicants/applicant").anonymous() //done by only unauthorized user
 			.requestMatchers(HttpMethod.GET,"/api/aplicants/**").hasRole("APPLICANT")
 			.requestMatchers(HttpMethod.PUT,"/api/aplicants/apply/*/*").hasRole("APPLICANT")
-			.requestMatchers(HttpMethod.PUT,"/api/aplicants/**").hasRole("APPLICANT")
+			.requestMatchers(HttpMethod.PUT,"/api/aplicants/applicant").hasRole("APPLICANT")
 //			.requestMatchers(HttpMethod.DELETE,"/api/applicants/**").hasRole("APPLICANT")
 			
 	

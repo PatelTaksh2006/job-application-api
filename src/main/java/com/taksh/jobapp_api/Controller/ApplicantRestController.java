@@ -50,7 +50,7 @@ public class ApplicantRestController {
 	public Applicant createApplicant(@RequestBody Applicant theApplicant)
 	{
 		theApplicant.setApplicantid(0);
-		applicantService.save(theApplicant);
+		applicantService.save(theApplicant,true);
 		return theApplicant;
 	}
 	@PutMapping("/apply/{applicant_id}/{job_id}")
@@ -66,7 +66,7 @@ public class ApplicantRestController {
 	@PutMapping("/applicant")
 	public Applicant updateApplicant(@RequestBody Applicant theApplicant)
 	{
-		applicantService.save(theApplicant);
+		applicantService.save(theApplicant,false);
 		return theApplicant;
 	}
 	

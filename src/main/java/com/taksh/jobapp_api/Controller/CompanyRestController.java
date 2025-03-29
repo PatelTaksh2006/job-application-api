@@ -37,14 +37,14 @@ public class CompanyRestController {
     @PostMapping("/company")
     public Company createCompany(@RequestBody Company theCompany) {
         theCompany.setCompanyid(0); // Ensure it's a new company
-        companyService.save(theCompany);
+        companyService.save(theCompany,true);
         return theCompany;
     }
 
     
     @PutMapping("/company")
     public Company updateCompany(@RequestBody Company theCompany) {
-        companyService.save(theCompany);
+        companyService.save(theCompany,false);
         return theCompany;
     }
 

@@ -34,8 +34,9 @@ public class ApplicantServiceImpl implements ApplicantService {
 
 	@Override
 	@Transactional
-	public void save(Applicant applicant) {
+	public void save(Applicant applicant,boolean isNew) {
 		// TODO Auto-generated method stub
+		if(isNew)
 		userService.registerUser(applicant.getEmail(), applicant.getPassword(), "APPLICANT");
 		applicantdao.save(applicant);
 		

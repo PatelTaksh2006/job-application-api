@@ -23,8 +23,9 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	@Transactional
-	public void save(Company company) {
+	public void save(Company company,boolean isNew) {
 		// TODO Auto-generated method stub
+		if(isNew)
 		userService.registerUser(company.getEmail(), company.getPassword(), "COMPANY");
 		companyRepository.save(company);
 	}

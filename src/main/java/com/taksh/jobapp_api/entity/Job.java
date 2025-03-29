@@ -20,7 +20,7 @@ public class Job {
     private String location;
 
     
-    @ManyToMany(mappedBy="appliedJobs")
+    @ManyToMany(mappedBy="appliedJobs",cascade=CascadeType.ALL)
     @JsonIgnore // Back reference, prevents infinite recursion
   // Prevent infinite recursion
     private List<Applicant> Applicant_List;
