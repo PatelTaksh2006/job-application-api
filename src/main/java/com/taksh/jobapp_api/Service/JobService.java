@@ -10,7 +10,7 @@ public interface JobService {
 	public void save(Job job);
 	public void delete(int id);
 	public Job findByid(int id);
-	public List<Job> getJobsByCompany(Company company);
+	public List<Job> getJobsByCompanyName(String companyName);
 	public List<Job> getJobsByTitle(String title);
 	public List<Applicant> getApplicantsByJobId(int jobId);
 }

@@ -41,23 +41,35 @@ public class JobRestController {
 		return jobService.getJobsByTitle(job_title);
 	}
 	
-	@GetMapping("/jobCompany")
-	public List<Job> findJobByCompany(@RequestBody Company company)
+	@GetMapping("/jobCompany/apl/{name}")
+	public List<Job> findJobByCompanyNameForApplicant(@PathVariable String name)
 	{
-		return jobService.getJobsByCompany(company);
+		List<Job> jobs=jobService.getJobsByCompanyName(name);
+		for(int i=0;i<jobs.size();i++)
+		{
+			jobs.get(i).setApplicant_List(null);
+		}
+		return jobs;
 	}
 	
+	@GetMapping("/jobCompany/comp/{name}")
+	public List<Job> findJobByCompanyNameForCompany(@PathVariable String name)
+	{
+		return jobService.getJobsByCompanyName(name);
+	}
 	@GetMapping("/jobApplicants/{id}")
 	public List<Applicant> findAllAppliedApplicant(@PathVariable int id)
 	{
 		return jobService.getApplicantsByJobId(id);
 	}
 	
-	@PostMapping("/job")
+	@PostMapping("/registerJob")
 	public Job createJob(@RequestBody Job job)
 	{
+		System.out.println("works");
 		job.setJobid(0);
 		jobService.save(job);
+		System.out.println("good");
 		return job;
 	}
 	

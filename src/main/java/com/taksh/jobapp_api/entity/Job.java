@@ -2,6 +2,11 @@ package com.taksh.jobapp_api.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,17 +18,28 @@ public class Job {
     private String title;
     private String description;
     private String location;
-    
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
 
+    
     @ManyToMany(mappedBy="appliedJobs")
+    @JsonIgnore // Back reference, prevents infinite recursion
+  // Prevent infinite recursion
     private List<Applicant> Applicant_List;
     
+    @ManyToOne
+    @JoinColumn(name="company_id")
+    @JsonIgnoreProperties("jobs")  // Prevents infinite loop
+    private Company company;
     
     
-    public int getJobid() {
+    public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public int getJobid() {
 		return Jobid;
 	}
 
@@ -55,13 +71,6 @@ public class Job {
         this.location = location;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 
 	public List<Applicant> getApplicant_List() {
 		return Applicant_List;

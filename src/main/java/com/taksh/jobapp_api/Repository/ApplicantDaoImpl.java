@@ -52,4 +52,15 @@ public class ApplicantDaoImpl implements ApplicantDao {
 		return appliedJobsList.getResultList();
 	}
 
+	@Override
+	@Transactional
+	public Applicant applyForJob(Applicant applicant,Job job) {
+		// TODO Auto-generated method stub
+		List<Job> jobs=applicant.getAppliedJobs();
+		jobs.add(job);
+		applicant.setAppliedJobs(jobs);
+		entityManager.merge(applicant);
+		return applicant;
+	}
+
 }

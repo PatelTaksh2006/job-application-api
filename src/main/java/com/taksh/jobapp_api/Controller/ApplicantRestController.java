@@ -38,17 +38,31 @@ public class ApplicantRestController {
 	@GetMapping("/applicant/appliedjobs/{id}")
 	public List<Job> getAlljobAppliedByApplicant(@PathVariable int id)
 	{
-		return applicantService.findJobsAppliedByApplicant(id);
+		List<Job> jobs= applicantService.findJobsAppliedByApplicant(id);
+		for(int i=0;i<jobs.size();i++)
+		{
+			jobs.get(i).setApplicant_List(null);
+		}
+		return jobs;
 	}
 	
-	@PostMapping("/register")
+	@PostMapping("/applicant")
 	public Applicant createApplicant(@RequestBody Applicant theApplicant)
 	{
 		theApplicant.setApplicantid(0);
 		applicantService.save(theApplicant);
 		return theApplicant;
 	}
-	
+	@PutMapping("/apply/{applicant_id}/{job_id}")
+	public Applicant applyForJob(@PathVariable("applicant_id") int applicantId,@PathVariable("job_id") int jobId)
+	{
+		Applicant theApplicant=applicantService.applyForJob(applicantId, jobId);
+		if(theApplicant==null)
+		{
+			throw new RuntimeException("Not applied for job please try again later");
+		}
+		return theApplicant;
+	}
 	@PutMapping("/applicant")
 	public Applicant updateApplicant(@RequestBody Applicant theApplicant)
 	{

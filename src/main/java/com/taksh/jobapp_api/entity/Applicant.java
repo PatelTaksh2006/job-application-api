@@ -2,6 +2,10 @@ package com.taksh.jobapp_api.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -26,6 +30,7 @@ public class Applicant {
     @ManyToMany
     @JoinTable(name="Applied_job",joinColumns=@JoinColumn(name="applicant_id",referencedColumnName="Applicantid"),
     inverseJoinColumns=@JoinColumn(name="job_id",referencedColumnName="Jobid"))
+    @JsonIgnore  // Prevents infinite loop
     private List<Job> appliedJobs;
     
     

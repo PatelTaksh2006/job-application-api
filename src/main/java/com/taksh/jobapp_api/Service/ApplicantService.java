@@ -10,4 +10,5 @@ public interface ApplicantService {
 	public void save(Applicant applicant);
 	public void delete(int id);
 	public List<Job> findJobsAppliedByApplicant(int id);
+	public Applicant applyForJob(int applicantId,int JobId);
 }

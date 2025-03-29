@@ -13,7 +13,8 @@ import com.taksh.jobapp_api.entity.Job;
 
 @Repository
 public interface JobRepository extends JpaRepository<Job,Integer> {
-	public List<Job> findByCompany(Company company);
+	@Query("SELECT j FROM Job j WHERE j.company.name = :companyName")
+	List<Job> findByCompanyName(@Param("companyName") String companyName);
 	public List<Job> findByTitle(String title);
 	
 	@Query("SELECT a FROM Applicant a JOIN a.appliedJobs j WHERE j.Jobid=:Jid")

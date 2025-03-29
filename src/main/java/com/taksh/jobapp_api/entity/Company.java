@@ -3,6 +3,8 @@ package com.taksh.jobapp_api.entity;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Company {
     @Id
@@ -15,13 +17,18 @@ public class Company {
     private String industry;
     private String location;
     private String email;
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="company",cascade = CascadeType.ALL)
+    @JsonIgnore  // Prevent infinite recursion
     private List<Job> jobs;
 
     
     
 
-    public int getCompanyid() {
+    public Company() {
+//		super();
+	}
+
+	public int getCompanyid() {
 		return Companyid;
 	}
 
